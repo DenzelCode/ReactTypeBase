@@ -2,17 +2,17 @@ import React, { Dispatch } from 'react';
 import { connect } from 'react-redux';
 import { IAppState } from '../../redux/store';
 import { Component } from 'react';
-import { RouteComponentProps } from 'react-router-dom';
+import { PropBase } from '../../types';
 
-type Props = RouteComponentProps & ReturnType<typeof mapStateToProps> & ReturnType<typeof mapDispatchToProps> & {
+type Props = PropBase<{
 
-}
+}, ReturnType<typeof mapStateToProps>, ReturnType<typeof mapDispatchToProps>>;
 
 export class Login extends Component<Props, {}> {
 
     render() {
         return <div>
-
+            {this.props.logged}
         </div>;
     }
 }
