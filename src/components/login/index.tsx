@@ -12,14 +12,14 @@ export class Login extends Component<Props, {}> {
 
     render() {
         return <div>
-            {this.props.logged}
+            {this.props.auth.data}
         </div>;
     }
 }
 
 const mapStateToProps = (state: IAppState) => ({
     logged: state.auth.logged,
-    userData: state.auth.data
+    auth: state.auth
 });
 
 const mapDispatchToProps = (dispatch: Dispatch<any>) => ({});
