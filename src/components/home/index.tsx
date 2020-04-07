@@ -23,7 +23,7 @@ export class Home extends Component<Props, {}> {
 
 const mapStateToProps = (state: IAppState) => ({
     logged: state.auth.logged,
-    userData: state.auth.data
+    auth: state.auth
 });
 
 const mapDispatchToProps = (dispatch: Dispatch<any>) => ({});
