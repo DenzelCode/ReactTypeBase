@@ -1,26 +1,17 @@
 import { Events } from './events';
+import { IActionUnion, makeAction } from '../types';
 
-const makeAction = <T extends Events, P>(type: T) => (payload: P) => {
-    return {
-        type,
-        payload,
-    };
-};
-
-export const setLogged = makeAction<Events.SET_LOGGED, number>(
+export const setLogged = makeAction<Events.SET_LOGGED, boolean>(
     Events.SET_LOGGED
 );
 
-interface IStringMap<T> {
-    [key: string]: T;
-}
-
-type AnyFunction = (...args: any[]) => any;
-
-type IActionUnion<T extends IStringMap<AnyFunction>> = ReturnType<T[keyof T]>;
+export const setData = makeAction<Events.SET_DATA, Object>(
+    Events.SET_DATA
+);
 
 const actions = {
     setLogged,
+    setData
 };
 
 export type IActions = IActionUnion<typeof actions>;

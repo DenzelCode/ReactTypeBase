@@ -1,30 +1,34 @@
-import React, { Dispatch } from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { IAppState } from '../../redux/store';
-import { Component } from 'react';
 import { PropBase } from '../../types';
 import { Page } from './page';
 
 type Props = PropBase<{
 
-}, ReturnType<typeof mapStateToProps>, ReturnType<typeof mapDispatchToProps>>;
+}, ReturnType<typeof mapStateToProps>, typeof mapDispatchToProps>;
 
-export class Home extends Component<Props, {}> {
+class Home extends Component<Props, {}> {
 
     componentDidMount() {
-        console.log(this.props.logged);
+        if (!this.props.auth.logged) {
+            this.props.history.replace('/');
+
+            return;
+        }
     }
 
     render() {
-        return <Page />;
+        return <Page user={this.props.auth.data} />;
     }
 }
 
 const mapStateToProps = (state: IAppState) => ({
-    logged: state.auth.logged,
     auth: state.auth
 });
 
-const mapDispatchToProps = (dispatch: Dispatch<any>) => ({});
+const mapDispatchToProps = {
+
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);
