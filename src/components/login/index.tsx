@@ -12,11 +12,7 @@ type Props = PropBase<{
 export class Login extends Component<Props, {}> {
 
     componentDidMount() {
-        if (!this.props.logged) {
-            this.props.history.replace('/home');
 
-            return;
-        }
     }
 
     render() {
