@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { IAppState } from '../../redux/store';
 import { Component } from 'react';
 import { PropBase } from '../../types';
+import { Page } from './page';
 
 type Props = PropBase<{
 
@@ -15,9 +16,7 @@ export class Home extends Component<Props, {}> {
     }
 
     render() {
-        return <div>
-
-        </div>;
+        return <Page />;
     }
 }
 

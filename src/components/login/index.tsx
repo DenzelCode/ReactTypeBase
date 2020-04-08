@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { IAppState } from '../../redux/store';
 import { Component } from 'react';
 import { PropBase } from '../../types';
+import { Page } from './page';
 
 type Props = PropBase<{
 
@@ -10,10 +11,16 @@ type Props = PropBase<{
 
 export class Login extends Component<Props, {}> {
 
+    componentDidMount() {
+        if (!this.props.logged) {
+            this.props.history.replace('/home');
+
+            return;
+        }
+    }
+
     render() {
-        return <div>
-            {this.props.auth.data}
-        </div>;
+        return <Page />;
     }
 }
 
