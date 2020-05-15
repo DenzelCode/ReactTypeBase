@@ -11,22 +11,18 @@ interface CustomProps {
 	// Your props here.
 }
 
-type Props = PropBase<CustomProps, ReturnType<typeof mapStateToProps>, typeof mapDispatchToProps>;
-
-type State = {
+interface State {
 	username: string;
 	password: string;
-};
+}
+
+type Props = PropBase<CustomProps, ReturnType<typeof mapStateToProps>, typeof mapDispatchToProps>;
 
 class Login extends Component<Props, State> {
-	constructor(props: any) {
-		super(props);
-
-		this.state = {
-			username: '',
-			password: '',
-		};
-	}
+	readonly state = {
+		username: '',
+		password: '',
+	};
 
 	componentDidMount() {
 		if (this.props.auth.logged) {

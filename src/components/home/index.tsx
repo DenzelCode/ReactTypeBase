@@ -8,9 +8,13 @@ interface CustomProps {
 	// Your props here.
 }
 
+interface State {
+	// Your state here.
+}
+
 type Props = PropBase<CustomProps, ReturnType<typeof mapStateToProps>, typeof mapDispatchToProps>;
 
-class Home extends Component<Props, {}> {
+class Home extends Component<Props, State> {
 	componentDidMount() {
 		if (!this.props.auth.logged) {
 			this.props.history.replace('/');
