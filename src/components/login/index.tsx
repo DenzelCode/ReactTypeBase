@@ -7,65 +7,68 @@ import { setData, setLogged } from '../../redux/actions/auth';
 
 type Test = typeof mapStateToProps;
 
-type Props = PropBase<{
-
-}, ReturnType<typeof mapStateToProps>, typeof mapDispatchToProps>;
-
-type State = {
-    username: string,
-    password: string,
+interface CustomProps {
+	// Your props here.
 }
 
+type Props = PropBase<CustomProps, ReturnType<typeof mapStateToProps>, typeof mapDispatchToProps>;
+
+type State = {
+	username: string;
+	password: string;
+};
+
 class Login extends Component<Props, State> {
+	constructor(props: any) {
+		super(props);
 
-    constructor(props: any) {
-        super(props);
+		this.state = {
+			username: '',
+			password: '',
+		};
+	}
 
-        this.state = {
-            username: "",
-            password: ""
-        }
-    }
+	componentDidMount() {
+		if (this.props.auth.logged) {
+			this.props.history.replace('/home');
 
-    componentDidMount() {
-        if (this.props.auth.logged) {
-            this.props.history.replace('/home');
+			return;
+		}
+	}
 
-            return;
-        }
-    }
+	onChange = (e: ChangeEvent<HTMLInputElement>) => {
+		this.setState({ [e.target.name]: e.target.value } as Pick<State, keyof State>);
+	};
 
-    onChange = (e: ChangeEvent<HTMLInputElement>) => {
-        this.setState({ [e.target.name]: e.target.value } as Pick<State, keyof State>)
-    }
+	onSubmit = (e: FormEvent<HTMLFormElement>) => {
+		e.preventDefault();
 
-    onSubmit = (e: FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
+		this.props.setLogged(true);
 
-        this.props.setLogged(true);
+		this.props.setData({ username: this.state.username });
 
-        this.props.setData({ username: this.state.username });
+		this.props.history.push('/home');
+	};
 
-        this.props.history.push('/home');
-    }
-
-    render() {
-        return <Page
-            username={this.state.username}
-            password={this.state.password}
-            onChange={this.onChange}
-            onSubmit={this.onSubmit}
-        />;
-    }
+	render() {
+		return (
+			<Page
+				username={this.state.username}
+				password={this.state.password}
+				onChange={this.onChange}
+				onSubmit={this.onSubmit}
+			/>
+		);
+	}
 }
 
 const mapStateToProps = (state: IAppState) => ({
-    auth: state.auth
+	auth: state.auth,
 });
 
 const mapDispatchToProps = {
-    setData,
-    setLogged,
+	setData,
+	setLogged,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login);
