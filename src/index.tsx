@@ -1,12 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
+
 import * as serviceWorker from './serviceWorker';
 import { Provider } from 'react-redux';
 import { store } from './redux/store';
-import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 import Login from './pages/Login';
 import Home from './pages/Home';
 import Logout from './pages/Logout';
+import './style.scss';
 
 ReactDOM.render(
 	<React.StrictMode>
