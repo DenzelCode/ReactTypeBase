@@ -12,7 +12,7 @@ type Props = {
 export const Page: React.FC<Props> = ({ username, password, onChange, onSubmit }) => {
 	return (
 		<Fragment>
-			<h1>Welcome {username.length > 0 ? username : defaultUser.username}</h1>
+			<h1>Welcome {username && username.length > 0 ? username : defaultUser.username}</h1>
 			<form onSubmit={onSubmit}>
 				<label htmlFor="username">Username</label>
 				<input
