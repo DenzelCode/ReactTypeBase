@@ -4,9 +4,9 @@ import * as serviceWorker from './serviceWorker';
 import { Provider } from 'react-redux';
 import { store } from './redux/store';
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
-import Login from './components/Login';
-import Home from './components/Home';
-import Logout from './components/Logout';
+import Login from './pages/Login';
+import Home from './pages/Home';
+import Logout from './pages/Logout';
 
 ReactDOM.render(
 	<React.StrictMode>
